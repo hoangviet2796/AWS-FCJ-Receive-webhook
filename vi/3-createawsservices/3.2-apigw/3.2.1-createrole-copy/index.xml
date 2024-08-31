@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tạo Invocation role cho api gateway on AWS FCJ Workshop</title>
+    <link>//localhost:1313/vi/3-createawsservices/3.2-apigw/3.2.1-createrole-copy/</link>
+    <description>Recent content in Tạo Invocation role cho api gateway on AWS FCJ Workshop</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <atom:link href="//localhost:1313/vi/3-createawsservices/3.2-apigw/3.2.1-createrole-copy/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

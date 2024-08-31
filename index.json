@@ -1,0 +1,120 @@
+[
+{
+	"uri": "/",
+	"title": "Receive Webhook",
+	"tags": [],
+	"description": "",
+	"content": "Receive and Handle webhook on AWS Overall In this lab, you\u0026rsquo;ll know how to set up simple webhook receiving and processing on AWS. To make the lab more intuitive and easier to understand, we will practice handling webhooks from Jira, authenticating and managing new issue creation or update issues from Jira, and sending notifications to a 3rd party software (Discord)\nWhen Jira sends a payload through the Api gateway, SQS will receive it and put it into the queue. AWS Lambda will retrieve data from SQS, authenticate the request using HMAC Signature, then process the payload information and send a notification to Discord via Discord webhook.\nContent Introduction Preparation Connect to EC2 instance Manage session logs Port Forwarding Clean up resources "
+},
+{
+	"uri": "/3-createawsservices/3.2-apigw/3.2.1-createrole/",
+	"title": "Create Invocation role for api gateway",
+	"tags": [],
+	"description": "",
+	"content": "Create Invocation role for api gateway Go to IAM Console Choose Roles. Choose Create Role At step 1 Choose type AWS Service. Choose service API Gateway Click Next At step 2 Click Next At step 3 Fill Role Name. Click Create After creating the Role, we attach a new policy to this role so that the API gateway can be configured with SQS service Cick Add Permissions. Cick Create inline policy. Select the service that needs a policy Choose SQS at Service. Continue choose action allow to use In this lab, we just need Send Message. At Resources Click Add ARNs. At Specify ARN At field Resource ARN we paste ARN of SQS that we already created at 3.1 Tạo dịch vụ Simple Queue Service. Click Add ARNs At Review And Create Fill Policy Name Choose Create policy After we created, we\u0026rsquo;ll have new role with permission like below Copy ARN "
+},
+{
+	"uri": "/2-prerequiste/2.1-createjira-project/2.1.1-createproject/",
+	"title": "Create Jira project ",
+	"tags": [],
+	"description": "",
+	"content": "Create Jira project Login to dashboard Jira Click Create Project. At the Project Templates. Click Software Development. Choose KANBAN the simplest and most intuitive model. Continue click next. At the Project Details. Fill project infomation. Fill Key Project. Continue click next. When created done, our interface\u0026rsquo;ll look like this. "
+},
+{
+	"uri": "/2-prerequiste/2.1-createjira-project/",
+	"title": "Create project on Jira and create jira webhook",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will need to create a demo project to manage issues, tasks, and assignments on Jira, then create jira webhook\nContent Create Project Create Jira Webhook "
+},
+{
+	"uri": "/3-createawsservices/3.1-sqs/",
+	"title": "Create service Simple Queue Service",
+	"tags": [],
+	"description": "",
+	"content": " Go to SQS service management console. Click Create Queue. At page create queue. Click Standard type. For this Standard type queue, AWS will push data into sqs and retrieve it in uncertain order but it is enough for us to practice this lab. When apply in real situation, you should consider using this type. Which queue to accommodate traffic usage?\nFill Name. Fill Visibility Timeout (Time taken for Lambda to get data from sqs and execute) Keep another infomations to default Click Create Queue Save SQS URL and ARN information to configure API Gateway and create permissions later\n"
+},
+{
+	"uri": "/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Webhook is a feature that allows website to automatically notify and send real-time data to other systems when an event occurs on the website.\nJira is the leading project management software developed by Atlassian, a very familiar software to those in the IT industry. We can easily track progress, assign work, manage errors and problems that arise, and optimize workflows flexibly and effectively.\nJira webhook will notify and send us infomations when there have changes or new creations of issues and tasks in the project.\nWhy choose AWS to receive and process information from webhooks?\nAWS uses a serverless model,we don\u0026rsquo;t need to focus too much on the server or infrastructure, so we can focus on building logic and better managing payloads from webhooks. AWS provides a full range of services so we can receive information from webhooks and process them effectively: API Gateway: Build a URL API to receive information from webhooks Simple Queue Service (SQS): Receive, organize and store complete information from webhooks AWS Lambda: Process information received from webhooks according to user requests. "
+},
+{
+	"uri": "/3-createawsservices/3.2-apigw/",
+	"title": "Create API Gateway",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will create an HTTP API that is responsible for receiving requests from Jira webhook.\nContent 3.2.1. Create Invocation role for api gateway\n3.2.2. Create HTTP API\n"
+},
+{
+	"uri": "/2-prerequiste/2.2-creatediscordwebhook/",
+	"title": "Create Discord webhook",
+	"tags": [],
+	"description": "",
+	"content": "Create Discord webhook In this step we will create a Discord webhook to send notifications every time an action on Jira is triggered You must be the server owner to create a Discord webhook\nAt server interface Click setting channel. At the setting Click Integrations. Choose Webhooks. Create new webhook Fill Name. Click Copy Webhook URL. Save this URL because it will be used in the next step\nClick Save Change "
+},
+{
+	"uri": "/3-createawsservices/3.2-apigw/3.2.2-createhttpapi/",
+	"title": "Create HTTP API",
+	"tags": [],
+	"description": "",
+	"content": "Create HTTP API Go to API Gateway console Choose Create API. At Choose API Type Choose HTTP API.\nClick Build.\nAt step 1 Fill API Name.\nSkip Integrations (we\u0026rsquo;ll setup later)\nSkip Routes (we\u0026rsquo;ll setup later) Continue Click Next\nCreate new stages Fill stage name Auto-Deploy choose false Click Next Review and Create Click Create Setup Routes At sidebar choose Routes Click Create At Route and Method Choose method POST Fill Route name Click Create Setup Integrations At sidebar choose Integrations Choose route cần setup Click Create and attach an integration At Integration target We choose \u0026lsquo;AWS Simple Queue Service\u0026rsquo; at field Integration type Choose \u0026lsquo;SendMessage\u0026rsquo; ở field Integration action At setup SQS Fill SQS URL we already created ad 3.1 Create dịch vụ Simple Queue Service in Queue URL At field Message body fill $request.body to take request body At field Invocation Role paste ARN of Role that we already created at 3.2.1 Create Invocation role cho api gateway At Advanced Settings At field Message attributes fill {\u0026quot;signature\u0026quot;:{\u0026quot;DataType\u0026quot;:\u0026quot;String\u0026quot;,\u0026quot;StringValue\u0026quot;:\u0026quot;${request.header.X-Hub-Signature}\u0026quot;}} đto take key on request header, used for authorize You can refer how to use \u0026lsquo;X-Hub-Signature\u0026rsquo; for authentication at here\nClick Create After configuration is complete, our http api interface will look like this "
+},
+{
+	"uri": "/2-prerequiste/2.1-createjira-project/2.1.2-createjirawebhook/",
+	"title": "Create Jira webhook",
+	"tags": [],
+	"description": "",
+	"content": "Create Jira webhook At the dashboard of project. Click Ctrl + K Search by keyword webhook. Click Setting Webhook. At the webhook management console. Click Create a webhook Fill informations. Name: Webhook name URL: URL Jira will be called every time when event triggered. Secret: Secret key used to authorize incoming requests is from this webhook (We can fill it out ourselves or generate it). Save this Secret Key information because it will be used in the next step\nContinue scroll down. Issue related event: We filter the project name so that only changes in that project will trigger this webhook. Select actions to trigger to webhooks You can research and choose other actions. In this lab, I only choose 2 actions: create and updated Issues.\nContinue click Save and we have new jira webhook. "
+},
+{
+	"uri": "/2-prerequiste/",
+	"title": "Preparation ",
+	"tags": [],
+	"description": "",
+	"content": "\rBefore jump in the lab, you need to prepare a Jira account, a Discord account and the Discord desktop app.\nCreate Jira account here\nCreate account and download Discord here\nAfter having both Jira and Discord accounts, we\u0026rsquo;ll set up new project on Jira and a webhook to send messages in Discord.\nContent Create project jira Create webhook Discord "
+},
+{
+	"uri": "/3-createawsservices/3.3-lambda/",
+	"title": "Create AWS Lambda",
+	"tags": [],
+	"description": "",
+	"content": " Go to AWS Lambda console. Click Create Function. At create Function Choose Author from scratch Fill Function name. Click Create Function After created function, go to IAM để gắn thêm policy cho Lambda Select Role whit entities is AWS:Lambda and Role name equal to Function Name At Role Choose Add Permissions Choose Create inline policy At Specify permissions Choose Service là SQS Continue choose action allow to use We choose ReceiveMessage,DeleteMessage,GetQueueAttributes. At Resources Click Add ARNs. At Specify ARN At field Resource ARN paste ARN of SQS we already created at 3.1 Create dịch vụ Simple Queue Service. Click Add ARNs Click Add At Review And Create Fill Policy Name Choose Create policy Back to service AWS Lambda Choose Add trigger At Trigger Configuration Choose service SQS Continue choose Queue that we already created Click Create Next we need to add a package so our code can handle difficult tasks such as createHMAC, call Discord.\nYou can download here.\nAt Layer Choose Create Layer At Create Layer Fill Name Choose Upload file Click Create At Layer trong Function Choose Add Layer Add layer that we just created At Code Choose upload from -\u0026gt; .zipfile After uploading, the code section will have the interface as shown Setup Variables Choose Configuration Choose Environment variables Click Edit Edit Variables Create 3 KEYs as shown JIRA_SECRET_KEY DISCORD_ID DISCORD_TOKEN Fill in Value according to the values ​​you had when creating the Jira webhook and Discord Webhook Click Save "
+},
+{
+	"uri": "/3-createawsservices/",
+	"title": "Create AWS Services",
+	"tags": [],
+	"description": "",
+	"content": "In this step, we will create services on AWS to receive information from Jira webhook, process the payload as well as send notifications to Discord.\nContent 3.1. Create Simple Queue Service\n3.2. Create HTTP API\n3.3. Create Lambda\n"
+},
+{
+	"uri": "/4-configureandtest/",
+	"title": "Configure and test",
+	"tags": [],
+	"description": "",
+	"content": " Go to API Gateway Choose Stages Copy involke url Back to setup webhook jira Choose Edit Paste URL (remember to add the route at the end of the URL according to the setup on AWS) Back to jira dashboard Choose Create Create new issue Webhook Discord will automatically pop up the notification as shown in the picture So we have completed the lab on receiving and processing webhooks on AWS.\n"
+},
+{
+	"uri": "/6-cleanup/",
+	"title": "Clean up resources",
+	"tags": [],
+	"description": "",
+	"content": "We will take the following steps to delete the resources we created in this exercise.\nDelete API Gateway Go to giao diện quản trị dịch vụ API gateway Choose API. Click Delete. Delete AWS Lambda Go to giao diện quản trị dịch vụ AWS Lambda. Choose Function. Click Action Click Delete Go to giao diện quản trị dịch vụ AWS Lambda. Click Layer Choose Layer need Delete Click Delete. Delete SQS Go to vào giao diện quản trị dịch vụ SQS Choose Queue. Click Delete "
+},
+{
+	"uri": "/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
