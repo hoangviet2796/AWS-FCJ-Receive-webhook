@@ -171,17 +171,17 @@
                 href="/4-configureandtest/"
                 />
   </url><url>
-    <loc>/6-cleanup/</loc>
+    <loc>/5-cleanup/</loc>
     <lastmod>1970-01-01T07:33:42+07:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/6-cleanup/"
+                href="/vi/5-cleanup/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/6-cleanup/"
+                href="/5-cleanup/"
                 />
   </url><url>
     <loc>/categories/</loc>

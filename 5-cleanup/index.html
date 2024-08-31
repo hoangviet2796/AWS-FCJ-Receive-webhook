@@ -9,7 +9,7 @@
 
     <link rel="icon" href="../images/favicon.png" type="image/png">
 
-    <title>Preparation  :: AWS FCJ Workshop</title>
+    <title>Clean up resources :: AWS FCJ Workshop</title>
 
     
     <link href="../css/nucleus.css?1725125360" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="../2-prerequiste/">
+  <body class="" data-url="../5-cleanup/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -110,7 +110,7 @@
     
     <li data-nav-id="/2-prerequiste/" title="Preparation " class="dd-item 
         
-        active
+        
         
         ">
       <a href="../2-prerequiste/">
@@ -488,7 +488,7 @@
     
     <li data-nav-id="/5-cleanup/" title="Clean up resources" class="dd-item 
         
-        
+        active
         
         ">
       <a href="../5-cleanup/">
@@ -539,7 +539,7 @@
                   
                     
                     
-                      <option id="en" value="/2-prerequiste/" selected>English</option>
+                      <option id="en" value="/5-cleanup/" selected>English</option>
                     
                   
               
@@ -553,7 +553,7 @@
                   
                     
                     
-                      <option id="vi" value="/vi/2-prerequiste/">Tiếng Việt</option>
+                      <option id="vi" value="/vi/5-cleanup/">Tiếng Việt</option>
                     
                   
               
@@ -639,7 +639,7 @@
             
           
           
-            <a href='../'>Receive Webhook</a> > Preparation 
+            <a href='../'>Receive Webhook</a> > Clean up resources
           
         
           
@@ -654,7 +654,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#content">Content</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -674,7 +674,7 @@
           
             <h1>
               
-              Preparation 
+              Clean up resources
             </h1>
           
 
@@ -682,17 +682,43 @@
 
 
 
-	<p>
-<div class="notices info" ><p>Before jump in the lab, you need to prepare a Jira account, a Discord account and the Discord desktop app.</p>
-</div>
-
-Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
-<p>Create account and download Discord <a href="https://discord.com/download">here</a></p>
-<p>After having both Jira and Discord accounts, we&rsquo;ll set up new project on Jira and a webhook to send messages in Discord.</p>
-<h3 id="content">Content</h3>
+	<p>We will take the following steps to delete the resources we created in this exercise.</p>
+<h4 id="delete-api-gateway">Delete API Gateway</h4>
+<ol>
+<li>Go to <a href="https://console.aws.amazon.com/apigateway/main/">giao diện quản trị dịch vụ API gateway</a></li>
+</ol>
 <ul>
-<li><a href="../2-prerequiste/2.1-createjira-project/">Create project jira</a></li>
-<li><a href="../2-prerequiste/2.2-creatediscordwebhook/">Create webhook Discord</a></li>
+<li>Choose API.</li>
+<li>Click <strong>Delete</strong>.
+<img alt="Clean" src="../images/5.clean/clean1.png"></li>
+</ul>
+<h4 id="delete-aws-lambda">Delete AWS Lambda</h4>
+<ol>
+<li>Go to <a href="https://console.aws.amazon.com/lambda/home">giao diện quản trị dịch vụ AWS Lambda</a>.</li>
+</ol>
+<ul>
+<li>Choose Function.</li>
+<li>Click <strong>Action</strong></li>
+<li>Click <strong>Delete</strong>
+<img alt="Clean" src="../images/5.clean/clean2.png"></li>
+</ul>
+<ol start="2">
+<li>Go to <a href="https://console.aws.amazon.com/lambda/home">giao diện quản trị dịch vụ AWS Lambda</a>.</li>
+</ol>
+<ul>
+<li>Click Layer</li>
+<li>Choose Layer need Delete</li>
+<li>Click <strong>Delete</strong>.
+<img alt="Clean" src="../images/5.clean/clean3.png"></li>
+</ul>
+<h4 id="delete-sqs">Delete SQS</h4>
+<ol>
+<li>Go to vào <a href="https://console.aws.amazon.com/sqs/v3/home">giao diện quản trị dịch vụ SQS</a></li>
+</ol>
+<ul>
+<li>Choose Queue.</li>
+<li>Click <strong>Delete</strong>
+<img alt="Clean" src="../images/5.clean/clean4.png"></li>
 </ul>
 
 
@@ -753,7 +779,6 @@ Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
             
                 
                     
-                    
                 
                 
 
@@ -763,109 +788,6 @@ Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -946,6 +868,21 @@ Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -956,6 +893,92 @@ Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -977,10 +1000,10 @@ Create Jira account <a href="https://id.atlassian.com/login">here</a></p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="../1-introduce/" title="Introduction"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../4-configureandtest/" title="Configure and test"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../2-prerequiste/2.1-createjira-project/" title="Create project on Jira and create jira webhook" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../1-introduce/" title="Introduction" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

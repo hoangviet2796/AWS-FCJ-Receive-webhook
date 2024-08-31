@@ -4,7 +4,7 @@
 	"title": "Receive Webhook",
 	"tags": [],
 	"description": "",
-	"content": "Tiếp nhận và xử lý webhook trên AWS Tổng quan Trong bài lab này, bạn sẽ tìm hiểu cách thiết lập tiếp nhận và xử lý webhook đơn giản trên AWS. Để bài lab được trực quan và dể hiểu hơn, chúng ta sẽ thực hành xử lý webhook từ Jira, xác thực và quản lý các sự kiện tạo mới hoặc cập nhật issue từ Jira và gửi thông báo đến một phần mềm thứ 3 (Discord).\nKhi Jira gửi một payload đến thông qua Api gateway, SQS sẽ tiếp nhận và đưa vào hàng đợi. AWS Lambda sẽ lấy dữ liệu từ SQS tiến hành xác thực request bằng HMAC Signature sau đó sẽ xử lý thông tin payload, gửi thông báo về Discord thông qua Discord webhook.\nNội dung Giới thiệu Các bước chuẩn bị Tạo kết nối đến máy chủ EC2 Quản lý session logs Port Forwarding Dọn dẹp tài nguyên "
+	"content": "Tiếp nhận và xử lý webhook trên AWS Tổng quan Trong bài lab này, bạn sẽ tìm hiểu cách thiết lập tiếp nhận và xử lý webhook đơn giản trên AWS. Để bài lab được trực quan và dể hiểu hơn, chúng ta sẽ thực hành xử lý webhook từ Jira, xác thực và quản lý các sự kiện tạo mới hoặc cập nhật issue từ Jira và gửi thông báo đến một phần mềm thứ 3 (Discord).\nKhi Jira gửi một payload đến thông qua Api gateway, SQS sẽ tiếp nhận và đưa vào hàng đợi. AWS Lambda sẽ lấy dữ liệu từ SQS tiến hành xác thực request bằng HMAC Signature sau đó sẽ xử lý thông tin payload, gửi thông báo về Discord thông qua Discord webhook.\nNội dung Giới thiệu Các bước chuẩn bị Tạo AWS Services Cấu hình và kiểm thử Dọn dẹp tài nguyên "
 },
 {
 	"uri": "/vi/2-prerequiste/2.1-createjira-project/",
@@ -88,7 +88,7 @@
 	"title": "Tạo AWS Services",
 	"tags": [],
 	"description": "",
-	"content": "Trong bước này, chúng ta sẽ thực hiện tạo các service trên AWS để tiếp nhận thông tin từ Jira webhook, xử lý payload cũng như là gửi thông báo đến Discord.\nNội dung 3.1. Tạo Simple Queue Service\n3.2. Tạo HTTP API\n3.3. Tạo Lambda\n"
+	"content": "Trong bước này, chúng ta sẽ thực hiện tạo các service trên AWS để tiếp nhận thông tin từ Jira webhook, xử lý payload cũng như là gửi thông báo đến Discord.\nNội dung 3.1. Tạo Simple Queue Service\n3.2. Tạo API Gateway\n3.3. Tạo Lambda\n"
 },
 {
 	"uri": "/vi/4-configureandtest/",
@@ -98,7 +98,7 @@
 	"content": " Đến giao diện API Gateway Chọn Stages Copy involke url Quay lại giao diện setup webhook jira Chọn Edit Paste URL (nhớ thêm route ở cuối URL theo như setup trên AWS nhé) Quay lại giao diện jira dashboard Chọn Create Tạo mới một issue Webhook Discord sẽ tự nhảy thông báo như trong hình Vậy là chúng ta đã hoàn thành xong bài lab nhận và xử lý webhook trên AWS.\n"
 },
 {
-	"uri": "/vi/6-cleanup/",
+	"uri": "/vi/5-cleanup/",
 	"title": "Dọn dẹp tài nguyên  ",
 	"tags": [],
 	"description": "",
